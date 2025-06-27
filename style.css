@@ -590,3 +590,223 @@ section {
     }
 }
 
+/* PORTFOLIO SECTION - VERSIÓN MEJORADA */
+.portfolio {
+    background: var(--second-bg-color);
+    padding: 8rem 9% 4rem;
+    display: block !important; /* Asegura que la sección sea visible */
+}
+
+.portfolio h2 {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 4rem;
+}
+
+.portfolio h2 span {
+    color: var(--main-color);
+}
+
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.portfolio-box {
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    height: 300px;
+    background: var(--bg-color);
+    border: .2rem solid var(--bg-color);
+    transition: all 0.5s ease;
+}
+
+.portfolio-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s ease;
+}
+
+.portfolio-box:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), var(--main-color));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: .5s ease;
+}
+
+.portfolio-box:hover .portfolio-layer {
+    transform: translateY(0);
+}
+
+.portfolio-layer h4 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), var(--main-color));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(0); /* <-- Mostrar siempre */
+    opacity: 1;               /* <-- Mostrar siempre */
+    transition: all 0.5s ease;
+}
+
+
+.portfolio-layer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: var(--text-color);
+    border-radius: 50%;
+}
+
+.portfolio-layer a i {
+    font-size: 2rem;
+    color: var(--second-bg-color);
+}
+
+.portfolio-box:hover {
+    border-color: var(--main-color);
+    transform: translateY(-10px);
+    box-shadow: 0 0 2rem var(--main-color);
+}
+
+/* PORTFOLIO SECTION - VERSIÓN SIN IMÁGENES */
+.portfolio {
+    background: var(--second-bg-color);
+    padding: 8rem 9% 4rem;
+    display: block !important;
+}
+
+.portfolio h2 {
+    text-align: center;
+    font-size: 4.5rem;
+    margin-bottom: 4rem;
+}
+
+.portfolio h2 span {
+    color: var(--main-color);
+}
+
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.portfolio-box {
+    background: var(--bg-color);
+    border-radius: 2rem;
+    padding: 3rem;
+    text-align: center;
+    border: .2rem solid var(--bg-color);
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-box:hover {
+    border-color: var(--main-color);
+    transform: translateY(-10px);
+    box-shadow: 0 0 2rem var(--main-color);
+}
+
+.portfolio-box i {
+    font-size: 5rem;
+    color: var(--main-color);
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-box h4 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-box p {
+    font-size: 1.6rem;
+    margin: 1rem 0 2rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.portfolio-box .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--main-color);
+    border-radius: 4rem;
+    font-size: 1.6rem;
+    color: var(--bg-color);
+    font-weight: 600;
+    transition: .5s ease;
+    margin-top: 1rem;
+}
+
+.portfolio-box .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 1.5rem var(--main-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .portfolio-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .portfolio-box {
+        min-height: 300px;
+        padding: 2rem;
+    }
+    
+    .portfolio-box h4 {
+        font-size: 2rem;
+    }
+    
+    .portfolio-box p {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .portfolio h2 {
+        font-size: 3.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .portfolio-box {
+        padding: 1.5rem;
+    }
+}

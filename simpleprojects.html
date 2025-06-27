@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos Simples | Cristopher Guerrero</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* PORTFOLIO SECTION - TEXTO SOLO VISIBLE AL HOVER */
+        .portfolio {
+            padding: 10rem 9% 2rem;
+            display: block !important;
+        }
+
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-box {
+            position: relative;
+            border-radius: 2rem;
+            overflow: hidden;
+            height: 300px;
+            background: var(--bg-color);
+            border: .2rem solid var(--bg-color);
+            transition: all 0.5s ease;
+        }
+
+        /* Capa de contenido - inicialmente oculta */
+        .portfolio-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), var(--main-color));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 4rem;
+            transform: translateY(0);
+            /* <-- Mostrar siempre */
+            opacity: 1;
+            /* <-- Mostrar siempre */
+            transition: all 0.5s ease;
+        }
+
+        /* Mostrar contenido al hacer hover */
+        .portfolio-box:hover .portfolio-layer {
+            transform: translateY(0);
+            /* Muestra el contenido */
+            opacity: 1;
+            /* Hace el contenido visible */
+        }
+
+        /* Estilos del texto */
+        .portfolio-layer h4 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .portfolio-layer p {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        /* Botones */
+        .btn-container {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn-container a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4.5rem;
+            height: 4.5rem;
+            background: var(--text-color);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-container a:hover {
+            background: var(--second-bg-color);
+            transform: scale(1.1);
+        }
+
+        .btn-container a i {
+            font-size: 2rem;
+            color: var(--main-color);
+        }
+
+        /* Efecto hover en la caja completa */
+        .portfolio-box:hover {
+            border-color: var(--main-color);
+            transform: translateY(-10px);
+            box-shadow: 0 0 2rem var(--main-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portfolio-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .portfolio-box {
+                height: 280px;
+            }
+
+            .portfolio-layer h4 {
+                font-size: 2.2rem;
+            }
+
+            .portfolio-layer p {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .portfolio-box {
+                height: 260px;
+            }
+
+            .btn-container a {
+                width: 4rem;
+                height: 4rem;
+            }
+
+            .btn-container a i {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <a href="index.html" class="logo">CristopherGT</a>
+        <nav class="navbar">
+            <a href="index.html#home">Inicio</a>
+            <a href="index.html#about">Sobre mí</a>
+            <a href="index.html#services">Servicios</a>
+            <a href="index.html#portfolio">Proyectos</a>
+            <a href="index.html#contact">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- Sección de Proyectos Simples -->
+    <section class="portfolio" id="simple-projects">
+        <h2 class="heading">Proyectos <span>Simples</span></h2>
+
+        <div class="portfolio-container">
+            <!-- Proyecto 1 -->
+            <div class="portfolio-box">
+                <div class="portfolio-layer">
+                    <h4>Stunning Website Backgrounds</h4>
+                    <p></p>
+                    <div class="btn-container">
+                        <a href="https://jocular-faun-247d1e.netlify.app/" target="_blank" rel="noopener noreferrer">
+                            <i class='bx bx-globe'></i>
+                        </a>
+                        <a href="https://github.com/CristopherGuerrero/stunning-website-backgrounds" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class='bx bxl-github'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="portfolio-box">
+                <div class="portfolio-layer">
+                    <h4>Loading Animation</h4>
+                    <p></p>
+                    <div class="btn-container">
+                        <a href="https://spectacular-babka-69b339.netlify.app/" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class='bx bx-globe'></i>
+                        </a>
+                        <a href="https://github.com/CristopherGuerrero/loading-animation" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class='bx bxl-github'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyecto 3 -->
+
+
+            <!-- Proyecto 4 -->
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
