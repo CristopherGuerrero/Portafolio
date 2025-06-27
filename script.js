@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.navbar a');
     const allLinks = document.querySelectorAll('.navbar a, .services-box .btn'); // Select both navbar links and the "Ver más" buttons
@@ -76,7 +75,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 */
 
-=======
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.navbar a');
     const allLinks = document.querySelectorAll('.navbar a, .services-box .btn'); // Select both navbar links and the "Ver más" buttons
@@ -153,5 +151,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 */
->>>>>>> d5b291072e15ee30b7cfb71268cddedf68b6eeb0
-
