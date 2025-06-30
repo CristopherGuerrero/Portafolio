@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -1403,3 +1405,57 @@ section {
 }
 
 
+/* Cambia la definición de las secciones */
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem;
+    display: block; /* Asegura que todas sean visibles */
+    position: relative;
+    scroll-margin-top: 100px; /* Compensa el header fijo */
+}
+
+/* Asegúrate que el body permita scroll */
+body {
+    overflow-x: hidden;
+    height: auto;
+}
+
+/* Header fijo con z-index adecuado */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Asegúrate que esté por encima de todo */
+}
+
+/* Ajustes específicos para cada sección */
+.home {
+    padding-top: 12rem; /* Espacio extra para el header */
+}
+
+.about {
+    background: var(--second-bg-color);
+    padding-top: 12rem;
+}
+
+.services {
+    background: var(--bg-color);
+    padding-top: 12rem;
+}
+
+.portfolio {
+    background: var(--second-bg-color);
+    padding-top: 12rem;
+}
+
+.contact {
+    background: var(--bg-color);
+    padding-top: 12rem;
+    padding-bottom: 5rem; /* Reducir padding inferior si es necesario */
+}
