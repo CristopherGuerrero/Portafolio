@@ -1,153 +1,103 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.navbar a');
-    const allLinks = document.querySelectorAll('.navbar a, .services-box .btn'); // Select both navbar links and the "Ver más" buttons
-    const sections = document.querySelectorAll('section');
-
-    // Mostrar solo la sección home al cargar con animación
-    document.getElementById('home').classList.add('section-active');
-
-    allLinks.forEach(link => { // Loop through all relevant links
-        link.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default link behavior for all handled links
-
-            // Determine if the clicked link is a main navbar link
-            const isNavLink = this.closest('.navbar');
-
-            // Remove active class from navbar links
-            navLinks.forEach(item => item.classList.remove('active'));
-
-            // If it's a navbar link, add 'active' class to it
-            if (isNavLink) {
-                this.classList.add('active');
-            }
-
-            // Hide all sections and remove 'section-active' class
-            sections.forEach(section => {
-                section.style.display = 'none';
-                section.classList.remove('section-active');
-            });
-
-            // Get the target section ID from the href
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) { // Ensure the target section exists
-                // Show the corresponding section with animation
-                targetSection.style.display = 'flex';
-                setTimeout(() => {
-                    targetSection.classList.add('section-active');
-                }, 10);
-
-                // Smooth scroll to the top of the newly displayed section
-                // This will scroll to the top of the 'portfolio' section in your case
-                window.scrollTo({
-                    top: targetSection.offsetTop, // Scroll to the top of the target section
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Menú móvil (opcional)
+    // Menú móvil
     const menuIcon = document.getElementById('menu-icon');
     const navbar = document.querySelector('.navbar');
-
+    
     if (menuIcon) {
         menuIcon.addEventListener('click', () => {
             navbar.classList.toggle('active');
             menuIcon.classList.toggle('bx-x');
         });
     }
-});
 
-// DELETE OR COMMENT OUT THESE BLOCKS COMPLETELY! They are causing the issue.
-/*
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();
-    });
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-    });
-});
-*/
-
-document.addEventListener('DOMContentLoaded', function() {
+    // Navegación suave mejorada
     const navLinks = document.querySelectorAll('.navbar a');
-    const allLinks = document.querySelectorAll('.navbar a, .services-box .btn'); // Select both navbar links and the "Ver más" buttons
-    const sections = document.querySelectorAll('section');
-
-    // Mostrar solo la sección home al cargar con animación
-    document.getElementById('home').classList.add('section-active');
-
-    allLinks.forEach(link => { // Loop through all relevant links
+    
+    navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default link behavior for all handled links
-
-            // Determine if the clicked link is a main navbar link
-            const isNavLink = this.closest('.navbar');
-
-            // Remove active class from navbar links
-            navLinks.forEach(item => item.classList.remove('active'));
-
-            // If it's a navbar link, add 'active' class to it
-            if (isNavLink) {
-                this.classList.add('active');
-            }
-
-            // Hide all sections and remove 'section-active' class
-            sections.forEach(section => {
-                section.style.display = 'none';
-                section.classList.remove('section-active');
-            });
-
-            // Get the target section ID from the href
+            e.preventDefault();
+            
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-
-            if (targetSection) { // Ensure the target section exists
-                // Show the corresponding section with animation
-                targetSection.style.display = 'flex';
-                setTimeout(() => {
-                    targetSection.classList.add('section-active');
-                }, 10);
-
-                // Smooth scroll to the top of the newly displayed section
-                // This will scroll to the top of the 'portfolio' section in your case
+            
+            if (targetSection) {
+                // Calcular posición considerando el header
+                const offsetPosition = targetSection.offsetTop - 100;
+                
                 window.scrollTo({
-                    top: targetSection.offsetTop, // Scroll to the top of the target section
+                    top: offsetPosition,
                     behavior: 'smooth'
+                });
+                
+                // Cerrar menú móvil si está abierto
+                if (navbar.classList.contains('active')) {
+                    navbar.classList.remove('active');
+                    menuIcon.classList.remove('bx-x');
+                }
+                
+                // Actualizar enlace activo después del scroll
+                setTimeout(() => {
+                    updateActiveMenu();
+                }, 1000);
+            }
+        });
+    });
+
+    // Función mejorada para detectar sección activa
+    function updateActiveMenu() {
+        const scrollPosition = window.scrollY + (window.innerHeight / 2);
+        let currentSection = null;
+        
+        document.querySelectorAll('section').forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionBottom = sectionTop + sectionHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        if (currentSection) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    }
+
+    // Configurar el observer para detectar secciones visibles
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
                 });
             }
         });
+    }, observerOptions);
+
+    // Observar todas las secciones
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
     });
 
-    // Menú móvil (opcional)
-    const menuIcon = document.getElementById('menu-icon');
-    const navbar = document.querySelector('.navbar');
-
-    if (menuIcon) {
-        menuIcon.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            menuIcon.classList.toggle('bx-x');
-        });
-    }
-});
-
-// DELETE OR COMMENT OUT THESE BLOCKS COMPLETELY! They are causing the issue.
-/*
-document.querySelectorAll('.btn').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();
-    });
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    // Manejo del formulario de contacto
+    document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
         e.preventDefault();
+        alert('Mensaje enviado (esto es una simulación)');
+        this.reset();
     });
 });
-*/
